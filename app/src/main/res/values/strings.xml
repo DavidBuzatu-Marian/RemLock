@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">RemLock</string>
+    <string name="eventbgimg">eventBgImg</string>
 </resources>
