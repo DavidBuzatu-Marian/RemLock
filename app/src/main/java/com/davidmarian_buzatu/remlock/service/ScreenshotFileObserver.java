@@ -25,7 +25,7 @@ public class ScreenshotFileObserver {
                 final String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + File.separator + "Screenshots" + File.separator;
                 final File f = new File(path);
                 if (f.isDirectory()) {
-                    fileObserver = new FileObserver(path, FileObserver.CREATE) {
+                    fileObserver = new FileObserver(path, FileObserver.CLOSE_WRITE) {
                         @Override
                         public void onEvent(int event, @Nullable String eventPath) {
                             // .lock files are generated after screenshot

@@ -47,10 +47,12 @@ public class ScreenshotBroadcastReceiver extends BroadcastReceiver {
             if (bundle != null && bundle.get(SCREENSHOT_PATH) != null) {
                 Log.d("SCREENSHOT", "SCREENSHOT TAKEN. PATH IS: " + bundle.get(SCREENSHOT_PATH));
                 File newScreenshot = new File(bundle.getString(SCREENSHOT_PATH));
-                while (!newScreenshot.exists() || newScreenshot.length() == 0) {
+                if (newScreenshot.exists()) {
                     Bitmap bitmap = getBitmap(newScreenshot.getPath());
                     Log.d("SCREENSHOT", bitmap != null ? "NOT NULL" : newScreenshot.length() + "");
-//                    analyzeImage(context, bytes);
+                    if(bitmap != null ) {
+                        analyzeImage(context, bitmap);
+                    }
                 }
             }
         }
@@ -69,8 +71,8 @@ public class ScreenshotBroadcastReceiver extends BroadcastReceiver {
         return bitmap;
     }
 
-    private void analyzeImage(final Context context, byte[] bytes) {
-        InputImage image = InputImage.fromByteArray(bytes, 480, 360, 0, InputImage.IMAGE_FORMAT_NV21);
+    private void analyzeImage(final Context context, Bitmap bitmap) {
+        InputImage image = InputImage.fromBitmap(bitmap, 0);
         TextRecognizer recognizer = TextRecognition.getClient();
         Task<Text> res = recognizer.process(image).addOnSuccessListener(new OnSuccessListener<Text>() {
             @Override
