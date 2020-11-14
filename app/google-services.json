@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "548249596466",
+    "firebase_url": "https://remlock-8c685.firebaseio.com",
+    "project_id": "remlock-8c685",
+    "storage_bucket": "remlock-8c685.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:548249596466:android:fb17a51d7d7f89659b822b",
+        "android_client_info": {
+          "package_name": "com.davidmarian_buzatu.remlock"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "548249596466-0qivrbf6308ihhdiuv2i308pvg31b6v2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDseSunqnyxD0GdeNHcCgCc97hU-FyVWX8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "548249596466-0qivrbf6308ihhdiuv2i308pvg31b6v2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
