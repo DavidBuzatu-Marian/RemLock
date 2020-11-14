@@ -16,6 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.davidmarian_buzatu.remlock.MainActivity;
+import com.davidmarian_buzatu.remlock.parser.Parser;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -79,12 +80,19 @@ public class ScreenshotBroadcastReceiver extends BroadcastReceiver {
             public void onSuccess(Text text) {
                 for (Text.TextBlock block : text.getTextBlocks()) {
                     String blockText = block.getText();
+                    Log.d("SCREENSHOT_BLOCK", blockText);
                     for (Text.Line line : block.getLines()) {
                         String lineText = line.getText();
-                        for (Text.Element element : line.getElements()) {
-                            String elementText = element.getText();
-                            Log.d("SCREENSHOT", blockText + "; " + lineText + "; " + elementText);
+                        if(Parser.isValidDate(lineText)) {
+                            Log.d("SCREENSHOT", lineText);
                         }
+                        if(Parser.isValidTime(lineText)) {
+                            Log.d("SCREENSHOT", lineText);
+                        }
+//                        for (Text.Element element : line.getElements()) {
+//                            String elementText = element.getText();
+//
+//                        }
                     }
                 }
             }
