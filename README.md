@@ -5,11 +5,11 @@ This project is a hackathon project for Oxford Hack 2020. It is an android appli
 We recommend using android studio as the software requirements come with it.
 
 | Requirement         | Version        |
-|----------------- ---|----------------|
+|---------------------|----------------|
 | JDK                 | 8.0 or higher  |
 | Android SDK         | 23 or higher   |
-| Firebase            | latest version |
 | Gradle              | 4.0 or higher  |
+| Firebase            | Latest version |
 | Android Phone       | 10.0 or higher |
 | Internet Connection | N/A            |
 
