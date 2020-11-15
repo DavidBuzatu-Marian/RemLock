@@ -16,6 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.davidmarian_buzatu.remlock.MainActivity;
+import com.davidmarian_buzatu.remlock.calendar.CalendarManager;
 import com.davidmarian_buzatu.remlock.parser.Parser;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -46,11 +47,9 @@ public class ScreenshotBroadcastReceiver extends BroadcastReceiver {
         } else {
             Bundle bundle = intent.getExtras();
             if (bundle != null && bundle.get(SCREENSHOT_PATH) != null) {
-                Log.d("SCREENSHOT", "SCREENSHOT TAKEN. PATH IS: " + bundle.get(SCREENSHOT_PATH));
                 File newScreenshot = new File(bundle.getString(SCREENSHOT_PATH));
                 if (newScreenshot.exists()) {
                     Bitmap bitmap = getBitmap(newScreenshot.getPath());
-                    Log.d("SCREENSHOT", bitmap != null ? "NOT NULL" : newScreenshot.length() + "");
                     if(bitmap != null ) {
                         analyzeImage(context, bitmap);
                     }
@@ -78,23 +77,57 @@ public class ScreenshotBroadcastReceiver extends BroadcastReceiver {
         Task<Text> res = recognizer.process(image).addOnSuccessListener(new OnSuccessListener<Text>() {
             @Override
             public void onSuccess(Text text) {
+                int cnt = 0;
+                String date = null, time = null, location = null;
+                StringBuilder description = new StringBuilder();
+                boolean nextLocation = false;
                 for (Text.TextBlock block : text.getTextBlocks()) {
-                    String blockText = block.getText();
-                    Log.d("SCREENSHOT_BLOCK", blockText);
+                    if(cnt == 0) {
+                        ++cnt;
+                        continue;
+                    }
                     for (Text.Line line : block.getLines()) {
-                        String lineText = line.getText();
-                        if(Parser.isValidDate(lineText)) {
-                            Log.d("SCREENSHOT", lineText);
+                        String lineText = line.getText().trim();
+                        String[] subSplit = new String[0];
+                        if(lineText.contains("Add")) {
+                            nextLocation = true;
+                            continue;
                         }
-                        if(Parser.isValidTime(lineText)) {
-                            Log.d("SCREENSHOT", lineText);
+                        if(location == null && nextLocation) {
+                            location = lineText;
+                            continue;
+                        } else if(nextLocation) {
+                            description.append(lineText).append("\n");
                         }
-//                        for (Text.Element element : line.getElements()) {
-//                            String elementText = element.getText();
-//
-//                        }
+                        if(lineText.startsWith("O")) {
+                            lineText = lineText.substring(1);
+                        }
+                        if(lineText.contains("from")) {
+                            subSplit = lineText.split("from");
+                        } else if(lineText.contains("to")) {
+                            subSplit = lineText.split("to");
+                        }
+
+                        if(subSplit.length > 0) {
+                            for(String sPrime: subSplit) {
+                                if(date == null && Parser.isValidDate(sPrime)) {
+                                    date = sPrime.trim();
+                                }
+                                if(time == null && Parser.isValidTime(sPrime)) {
+                                    time = sPrime;
+                                }
+                            }
+                        } else {
+                            if(date == null && Parser.isValidDate(lineText)) {
+                                date = lineText;
+                            }
+                            if(time == null && Parser.isValidTime(lineText)) {
+                                time = lineText;
+                            }
+                        }
                     }
                 }
+                CalendarManager.addToCalendar(context, location, location, description.toString(), Parser.getDateInMillis(date) + Parser.getTimeInMillis(time));
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

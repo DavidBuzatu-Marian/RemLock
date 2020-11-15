@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.CalendarContract;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import android.content.pm.PackageManager;
 
 import com.davidmarian_buzatu.remlock.calendar.CalendarManager;
+import com.davidmarian_buzatu.remlock.parser.Parser;
 import com.davidmarian_buzatu.remlock.service.ScreenshotService;
 
 import java.util.List;
@@ -44,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if(ContextCompat.checkSelfPermission(this, READ_CALENDAR) == PackageManager.PERMISSION_GRANTED) {
+        if(ContextCompat.checkSelfPermission(this, READ_CALENDAR) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this, WRITE_CALENDAR) == PackageManager.PERMISSION_GRANTED) {
             CalendarManager.getFromCalendar(this);
         }
     }

@@ -30,17 +30,18 @@ public class CalendarManager {
         intent.putExtra(CalendarContract.Events.TITLE, title);
         intent.putExtra(CalendarContract.Events.EVENT_LOCATION, location);
         intent.putExtra(CalendarContract.Events.DESCRIPTION, description);
-        intent.putExtra(CalendarContract.Events.DTSTART, dtStart);
         intent.putExtra(CalendarContract.Events.ALL_DAY, true);
-        intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, dtStart);
-
+        intent.putExtra(CalendarContract.Events.DTSTART, dtStart);
+        String timeZone = TimeZone.getTimeZone("GMT").getID();
+        intent.putExtra(CalendarContract.Events.CALENDAR_TIME_ZONE, timeZone);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         // Open app if form is filled and has permission
         if (intent.resolveActivity(context.getPackageManager()) != null) {
-            context.startActivity(intent);
+            context.getApplicationContext().startActivity(intent);
         }
     }
 
-    public static void addToCalendarWithoutIntent(Context context,String title, String location, String description, long dtStart) {
+    public static void addToCalendarWithoutIntent(Context context,String title, String location, String description, long dtStart, long time) {
         final ContentValues event = new ContentValues();
         event.put(CalendarContract.Events.CALENDAR_ID, 394);
 
@@ -49,19 +50,14 @@ public class CalendarManager {
         event.put(CalendarContract.Events.EVENT_LOCATION, location);
 
         event.put(CalendarContract.Events.DTSTART, dtStart);
-        event.put(CalendarContract.Events.DTEND, dtStart);
         event.put(CalendarContract.Events.ALL_DAY, 1);
-
         String timeZone = TimeZone.getDefault().getID();
-        event.put(CalendarContract.Events.EVENT_TIMEZONE, timeZone);
+        event.put(CalendarContract.EXTRA_EVENT_BEGIN_TIME, time);
+        event.put(CalendarContract.Events.CALENDAR_TIME_ZONE, timeZone);
 
-        Uri baseUri;
-        if (Build.VERSION.SDK_INT >= 8) {
-            baseUri = Uri.parse("content://com.android.calendar/events");
-        } else {
-            baseUri = Uri.parse("content://calendar/events");
-        }
-        context.getContentResolver().insert(baseUri, event);
+
+        Uri baseUri = Uri.parse("content://com.android.calendar/events");
+        context.getApplicationContext().getContentResolver().insert(baseUri, event);
     }
 
     public static void openCalendar(Context context, Event event) {
