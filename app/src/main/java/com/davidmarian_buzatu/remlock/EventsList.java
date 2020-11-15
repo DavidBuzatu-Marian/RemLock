@@ -87,14 +87,12 @@ public class EventsList extends RecyclerView.Adapter<EventsList.EventsViewHolder
                 public void onClick(View view) {
                     imgIcon.setBackgroundResource(R.drawable.rectangle_active);
                     PopupWindow popupWindow = getPopUpView();
-                    testAddEvent();
+//                    CalendarManager.addToCalendarWithoutIntent(eventContext, event.title, event.eventLocation, event.description, event.dTStart - 86400000 );
                 }
             });
         }
 
-        private void testAddEvent() {
-            CalendarManager.addToCalendar(eventContext, event.title, event.eventLocation, event.description, event.dTStart);
-        }
+        //CalendarManager.addToCalendar(eventContext, event.title, event.eventLocation, event.description, event.dTStart);
 
         private void setPopupInfo(View popupView) {
             TextView tvDescription = popupView.findViewById(R.id.popup_description);

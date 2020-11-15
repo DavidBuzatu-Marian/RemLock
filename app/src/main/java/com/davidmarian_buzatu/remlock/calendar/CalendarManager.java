@@ -1,5 +1,6 @@
 package com.davidmarian_buzatu.remlock.calendar;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -14,6 +15,7 @@ import com.davidmarian_buzatu.remlock.R;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.TimeZone;
 
 import me.everything.providers.android.calendar.Calendar;
 import me.everything.providers.android.calendar.CalendarProvider;
@@ -36,6 +38,30 @@ public class CalendarManager {
         if (intent.resolveActivity(context.getPackageManager()) != null) {
             context.startActivity(intent);
         }
+    }
+
+    public static void addToCalendarWithoutIntent(Context context,String title, String location, String description, long dtStart) {
+        final ContentValues event = new ContentValues();
+        event.put(CalendarContract.Events.CALENDAR_ID, 394);
+
+        event.put(CalendarContract.Events.TITLE, title);
+        event.put(CalendarContract.Events.DESCRIPTION, description);
+        event.put(CalendarContract.Events.EVENT_LOCATION, location);
+
+        event.put(CalendarContract.Events.DTSTART, dtStart);
+        event.put(CalendarContract.Events.DTEND, dtStart);
+        event.put(CalendarContract.Events.ALL_DAY, 1);
+
+        String timeZone = TimeZone.getDefault().getID();
+        event.put(CalendarContract.Events.EVENT_TIMEZONE, timeZone);
+
+        Uri baseUri;
+        if (Build.VERSION.SDK_INT >= 8) {
+            baseUri = Uri.parse("content://com.android.calendar/events");
+        } else {
+            baseUri = Uri.parse("content://calendar/events");
+        }
+        context.getContentResolver().insert(baseUri, event);
     }
 
     public static void openCalendar(Context context, Event event) {
