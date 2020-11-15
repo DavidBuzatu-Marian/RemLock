@@ -11,5 +11,6 @@
     <string name="list_item_button">View details</string>
     <string name="act_main_title">Events</string>
     <string name="act_main_button_start">Start monitorisation</string>
+    <string name="pop_up_btn">Open in calendar</string>
 
 </resources>

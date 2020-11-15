@@ -9,6 +9,9 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:fontFamily">@font/roboto_regular</item>
     </style>
-
+    <style name="popup_window_animation">
+        <item name="android:windowEnterAnimation">@anim/popup_in</item>
+        <item name="android:windowExitAnimation">@anim/popup_out</item>
+    </style>
 
 </resources>
