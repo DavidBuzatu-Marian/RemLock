@@ -20,10 +20,22 @@
         />
 
     <TextView
-        android:id="@+id/popup_title"
+        android:id="@+id/popup_event_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/popup_img"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="28sp"
+        android:fontFamily="@font/opensans_bold"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp" />
+    <TextView
+        android:id="@+id/popup_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/popup_event_title"
         app:layout_constraintStart_toStartOf="parent"
         android:textSize="24sp"
         android:fontFamily="@font/opensans_bold"
@@ -42,7 +54,6 @@
         android:fontFamily="@font/roboto_regular"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginTop="8dp"
         android:text="Description of the event goes in here, but this is ust a replacement to see how it looks"/>
     <TextView
         android:id="@+id/popup_date"
