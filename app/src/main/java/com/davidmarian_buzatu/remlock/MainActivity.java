@@ -17,11 +17,6 @@ import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText title;
-    EditText location;
-    EditText description;
-    Button addEvent;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

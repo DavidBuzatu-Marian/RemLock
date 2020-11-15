@@ -7,6 +7,8 @@
     android:orientation="horizontal"
     android:padding="16dp"
     android:layout_marginHorizontal="16dp"
+    android:background="@drawable/rounded_corners_bkg"
+    android:layout_marginTop="16dp"
     tools:ignore="UseCompoundDrawables">
 
     <ImageView
@@ -16,7 +18,7 @@
         android:contentDescription="@string/eventbgimg"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/rectangle_innactive" />
+        android:background="@drawable/rectangle_innactive" />
 
     <TextView
         android:id="@+id/itemTitle"
@@ -24,6 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_weight="1"
+        android:inputType="textCapSentences"
         android:paddingStart="16dp"
         android:text="SomeEvent"
         android:textSize="18sp"
@@ -59,16 +62,17 @@
         app:layout_constraintTop_toBottomOf="@id/itemDateTitle"
         app:layout_constraintStart_toEndOf="@+id/imgIcon"
         tools:ignore="RtlSymmetry" />
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/itemButton"
-        android:layout_width="128dp"
-        android:layout_height="48dp"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:textColor="#ECF8F8"
-
-        android:text="@string/list_item_button"
-        android:background="@color/colorPrimary"
+        android:textAlignment="center"
+        app:icon="@drawable/ic_plus_solid"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        android:padding="0dp"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

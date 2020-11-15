@@ -9,7 +9,7 @@
     <string name="eventbgimg">eventBgImg</string>
     <string name="list_item_date_title"><![CDATA[Date-Time]]></string>
     <string name="list_item_button">View details</string>
-    <string name="act_main_title">Upcoming events</string>
+    <string name="act_main_title">Events</string>
     <string name="act_main_button_start">Start monitorisation</string>
 
 </resources>

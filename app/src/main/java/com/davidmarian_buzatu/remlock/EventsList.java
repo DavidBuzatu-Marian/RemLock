@@ -1,6 +1,7 @@
 package com.davidmarian_buzatu.remlock;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,7 +60,8 @@ public class EventsList extends RecyclerView.Adapter<EventsList.EventsViewHolder
             viewDetails.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    imgIcon.setBackground(ContextCompat.getDrawable(eventContext, R.drawable.rectangle_active));
+                    Log.d("FIRED", "FIRED");
+                    imgIcon.setBackgroundResource(R.drawable.rectangle_active);
                 }
             });
         }

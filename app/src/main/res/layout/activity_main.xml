@@ -20,10 +20,20 @@
             app:layout_constraintStart_toStartOf="parent"
             android:textSize="40sp"
             android:layout_marginTop="16dp"
+            android:textColor="@color/colorPrimary"
+            android:fontFamily="@font/opensans_bold"
             android:textStyle="bold"
             android:layout_marginStart="16dp"
             android:text="@string/act_main_title"
             />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/ic_undraw_events_2p66"/>
         <Button
             android:id="@+id/act_main_BTN_start"
             android:layout_width="wrap_content"
