@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    android:layout_marginHorizontal="16dp"
+    tools:ignore="UseCompoundDrawables">
+
+    <ImageView
+        android:id="@+id/imgIcon"
+        android:layout_width="8dp"
+        android:layout_height="96dp"
+        android:contentDescription="@string/eventbgimg"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/rectangle_innactive" />
+
+    <TextView
+        android:id="@+id/itemTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:paddingStart="16dp"
+        android:text="SomeEvent"
+        android:textSize="18sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imgIcon"
+        tools:ignore="RtlSymmetry" />
+
+    <TextView
+        android:id="@+id/itemDateTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1"
+        android:paddingStart="16dp"
+        android:text="@string/list_item_date_title"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        app:layout_constraintTop_toBottomOf="@id/itemTitle"
+        app:layout_constraintStart_toEndOf="@+id/imgIcon"
+        tools:ignore="RtlSymmetry" />
+    <TextView
+        android:id="@+id/itemDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="4dp"
+        android:layout_weight="1"
+        android:paddingStart="16dp"
+        android:text="Thursday - 13 November"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/itemDateTitle"
+        app:layout_constraintStart_toEndOf="@+id/imgIcon"
+        tools:ignore="RtlSymmetry" />
+    <Button
+        android:id="@+id/itemButton"
+        android:layout_width="128dp"
+        android:layout_height="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="#ECF8F8"
+
+        android:text="@string/list_item_button"
+        android:background="@color/colorPrimary"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

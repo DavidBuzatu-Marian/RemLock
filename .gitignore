@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+# SOURCE: https://github.com/github/gitignore/blob/master/Android.gitignore
+
+>>>>>>> origin/Lesther
 # Built application files
 *.apk
 *.aar
@@ -85,4 +90,8 @@ lint/tmp/
 # lint/reports/
 
 # Android Profiling
+<<<<<<< HEAD
 *.hprof
+=======
+*.hprof
+>>>>>>> origin/Lesther
