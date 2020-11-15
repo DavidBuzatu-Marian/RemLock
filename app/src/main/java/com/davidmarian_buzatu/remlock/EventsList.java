@@ -16,6 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.davidmarian_buzatu.remlock.calendar.CalendarManager;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -85,8 +87,13 @@ public class EventsList extends RecyclerView.Adapter<EventsList.EventsViewHolder
                 public void onClick(View view) {
                     imgIcon.setBackgroundResource(R.drawable.rectangle_active);
                     PopupWindow popupWindow = getPopUpView();
+                    testAddEvent();
                 }
             });
+        }
+
+        private void testAddEvent() {
+            CalendarManager.addToCalendar(eventContext, event.title, event.eventLocation, event.description, event.dTStart);
         }
 
         private void setPopupInfo(View popupView) {
@@ -96,6 +103,13 @@ public class EventsList extends RecyclerView.Adapter<EventsList.EventsViewHolder
             tvTitle.setText(event.title);
             tvDescription.setText(event.description.length() > 0 ? event.description : "No description provided for this event.");
             tvDate.setText(getDate(event.dTStart));
+            Button btnOpenCalendar = popupView.findViewById(R.id.popup_button);
+            btnOpenCalendar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    CalendarManager.openCalendar(eventContext, event);
+                }
+            });
         }
 
         private PopupWindow getPopUpView() {
