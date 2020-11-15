@@ -17,18 +17,19 @@
         android:layout_height="96dp"
         android:contentDescription="@string/eventbgimg"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imgIcon"
         android:background="@drawable/rectangle_innactive" />
 
     <TextView
         android:id="@+id/itemTitle"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_weight="1"
         android:inputType="textCapSentences"
         android:paddingStart="16dp"
         android:text="SomeEvent"
+
         android:textSize="18sp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imgIcon"
